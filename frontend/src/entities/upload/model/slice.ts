@@ -1,0 +1,44 @@
+import { createSlice } from "@reduxjs/toolkit";
+import type { UploadState } from "./types";
+import { uploadAndProcessExcel } from "./thunks";
+
+const initialState: UploadState = {
+  totalSize: 0,
+  data: null,
+  modifiedData: null,
+  error: null,
+  instances: {
+    firstInstance: "Первая инстанция",
+    appealInstance: "Апелляционная инстанция",
+    cassInstance: "Кассационная инстанция",
+    cass2Instance: "Кассационная инстанция 2",
+  },
+};
+
+const uploadSlice = createSlice({
+  name: "upload",
+  initialState,
+  reducers: {
+    clear(state) {
+      state.totalSize = 0;
+      state.data = null;
+      state.modifiedData = null;
+      state.error = null;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(uploadAndProcessExcel.fulfilled, (state, action) => {
+      state.data = action.payload.data;
+      state.modifiedData = action.payload.modifiedData;
+      state.totalSize = action.payload.totalSize;
+      state.error = null;
+    });
+    builder.addCase(uploadAndProcessExcel.rejected, (state, action) => {
+      state.error = action.payload as string;
+    });
+  },
+});
+
+export const { clear } = uploadSlice.actions;
+
+export const uploadReducer = uploadSlice.reducer;
