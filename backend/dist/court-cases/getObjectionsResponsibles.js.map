@@ -1,0 +1,1 @@
+{"version":3,"file":"getObjectionsResponsibles.js","sourceRoot":"","sources":["../../src/court-cases/getObjectionsResponsibles.ts"],"names":[],"mappings":";;AAEA,8DAMC;AARD,mEAAgE;AAEhE,SAAgB,yBAAyB,CAAC,IAAW,EAAE,WAAmB;IACxE,OAAO,IAAA,6CAAqB,EAAC,IAAI,EAAE;QACjC,WAAW;QACX,SAAS,EAAE,aAAa;QACxB,SAAS,EAAE,yBAAyB;KACrC,CAAC,CAAC;AACL,CAAC"}

@@ -10,5 +10,7 @@ export const uploadExcelApi = async (file: File) => {
     },
   });
 
+  console.log(data);
+
   return data;
 };

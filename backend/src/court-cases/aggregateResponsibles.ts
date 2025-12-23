@@ -1,13 +1,24 @@
-import type { AggregateConfig, Responsible } from "@/05-entities";
+export type Responsible = {
+  percent: number;
+  name: string;
+  assigned: number;
+  completed: number;
+};
+
+export type AggregateConfig = {
+  instanceKey: string;
+  nameField: string;
+  dateField: string;
+};
 
 export function aggregateResponsibles(
   data: any[],
-  { instanceKey, nameField, dateField }: AggregateConfig
+  { instanceKey, nameField, dateField }: AggregateConfig,
 ): Responsible[] {
   return Object.values(
     data.reduce((acc: Record<string, Responsible>, item) => {
       const rawName = item[instanceKey]?.[nameField];
-      const name = rawName?.replace(/\b\d{2}\.+\d{2}\.*(\d{4})*\b/, "").trim();
+      const name = rawName?.replace(/\b\d{2}\.+\d{2}\.*(\d{4})*\b/, '').trim();
 
       const date = item[instanceKey]?.[dateField];
 
@@ -20,9 +31,11 @@ export function aggregateResponsibles(
       acc[name].assigned += 1;
       if (date) acc[name].completed += 1;
 
-      acc[name].percent = acc[name].assigned ? acc[name].completed / acc[name].assigned : 0;
+      acc[name].percent = acc[name].assigned
+        ? acc[name].completed / acc[name].assigned
+        : 0;
 
       return acc;
-    }, {})
+    }, {}),
   );
 }

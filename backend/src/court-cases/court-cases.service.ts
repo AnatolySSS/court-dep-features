@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateCourtCaseDto } from './dto/create-court-case.dto';
 import { UpdateCourtCaseDto } from './dto/update-court-case.dto';
 import * as XLSX from 'xlsx';
+import { modifyData } from './modifiedData';
 
 @Injectable()
 export class CourtCasesService {
@@ -22,9 +23,43 @@ export class CourtCasesService {
       raw: false,
       defval: null,
     });
+    // const rows = this.parseFilledRows(sheet);
 
-    // дальше твоя логика
-    return this.mapRows(rows);
+    const data = this.mapRows(rows);
+    const modifiedData = modifyData(data);
+    console.log(modifiedData);
+
+    return modifiedData;
+  }
+
+  private parseFilledRows(sheet: XLSX.WorkSheet): any[][] {
+    // Получаем диапазон заполненных ячеек
+    const range = XLSX.utils.decode_range(sheet['!ref'] || '');
+    const rows: any[][] = [];
+
+    for (let R = range.s.r; R <= range.e.r; ++R) {
+      const row: any[] = [];
+      let hasValue = false;
+
+      for (let C = range.s.c; C <= range.e.c; ++C) {
+        const cellAddress = { r: R, c: C };
+        const cellRef = XLSX.utils.encode_cell(cellAddress);
+        const cell = sheet[cellRef];
+
+        if (cell) {
+          row.push(cell.v);
+          hasValue = true;
+        } else {
+          row.push(null);
+        }
+      }
+
+      if (hasValue) {
+        rows.push(row);
+      }
+    }
+
+    return rows;
   }
 
   private mapRows(rows: any[]) {

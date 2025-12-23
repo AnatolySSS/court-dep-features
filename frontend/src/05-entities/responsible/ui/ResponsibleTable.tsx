@@ -9,7 +9,7 @@ type Props = {
 
 export function ResponsibleTable({ data }: Props) {
   return (
-    <DataTable value={data} sortField="assigned" sortOrder={-1} removableSort scrollable scrollHeight="58vh">
+    <DataTable value={data} sortField="assigned" sortOrder={-1} removableSort scrollable scrollHeight="51vh">
       <Column field="name" header="ФИО" sortable />
       <Column field="assigned" header="Назначено" sortable />
       <Column field="completed" header="Выполнено" sortable />

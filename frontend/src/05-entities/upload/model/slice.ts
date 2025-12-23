@@ -28,7 +28,7 @@ const uploadSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(uploadAndProcessExcel.fulfilled, (state, action) => {
-      state.data = action.payload.data;
+      // state.data = action.payload.data;
       state.modifiedData = action.payload.modifiedData;
       state.totalSize = action.payload.totalSize;
       state.error = null;
