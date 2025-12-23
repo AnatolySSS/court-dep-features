@@ -1,7 +1,6 @@
 // model/thunks.ts  <-- новое место
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { uploadExcelApi } from "@/05-entities";
-// import { modifyData } from "@/05-entities";
 
 export const uploadAndProcessExcel = createAsyncThunk(
   "upload/uploadAndProcessExcel",

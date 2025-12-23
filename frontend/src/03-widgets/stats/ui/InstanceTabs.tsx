@@ -7,6 +7,7 @@ type Props = {
     appeal: any;
     cass: any;
     cass2: any;
+    allInstances: any;
   };
 };
 
@@ -27,6 +28,10 @@ export function InstanceTabs({ data }: Props) {
 
       <TabPanel header="Кассация 2">
         <InstancePanel {...data.cass2} />
+      </TabPanel>
+
+      <TabPanel header="Все инстанции">
+        <InstancePanel {...data.allInstances} />
       </TabPanel>
     </TabView>
   );

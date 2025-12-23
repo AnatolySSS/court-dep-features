@@ -1,3 +1,3 @@
-export { InstanceTabs } from "@/03-widgets/instance-responsibles/ui";
-export { InstancePanel } from "@/03-widgets/instance-responsibles/ui";
-export { InstanceSection } from "@/03-widgets/instance-responsibles/ui";
+export { InstanceTabs } from "@/03-widgets/stats/ui";
+export { InstancePanel } from "@/03-widgets/stats/ui";
+export { InstanceSection } from "@/03-widgets/stats/ui";

@@ -19,6 +19,7 @@ export function StatsPage() {
               appeal: instances?.appealInstance,
               cass: instances?.cassInstance,
               cass2: instances?.cass2Instance,
+              allInstances: instances?.allInstances,
             }}
           />
         </div>

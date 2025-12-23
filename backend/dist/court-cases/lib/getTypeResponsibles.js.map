@@ -1,0 +1,1 @@
+{"version":3,"file":"getTypeResponsibles.js","sourceRoot":"","sources":["../../../src/court-cases/lib/getTypeResponsibles.ts"],"names":[],"mappings":";;AAEA,kDAMC;AARD,mEAAgE;AAEhE,SAAgB,mBAAmB,CAAC,IAAW,EAAE,WAAmB;IAClE,OAAO,IAAA,6CAAqB,EAAC,IAAI,EAAE;QACjC,WAAW;QACX,SAAS,EAAE,iCAAiC;QAC5C,SAAS,EAAE,iBAAiB;KAC7B,CAAC,CAAC;AACL,CAAC"}
