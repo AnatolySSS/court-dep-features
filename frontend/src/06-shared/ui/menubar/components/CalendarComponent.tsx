@@ -22,6 +22,7 @@ export const CalendarComponent = () => {
         dateFormat="dd.mm.yy"
         readOnlyInput
         hideOnRangeSelection
+        showIcon
       />
     </div>
   );
