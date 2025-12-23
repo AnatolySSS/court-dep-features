@@ -52,7 +52,7 @@
 .dot {
   width: 10px;
   height: 10px;
-  background-color: #4caf50;
+  background-color: #6366f1;
   border-radius: 50%;
   animation: bounce 1s infinite ease-in-out;
 }
