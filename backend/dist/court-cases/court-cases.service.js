@@ -13,7 +13,7 @@ const XLSX = require("xlsx");
 const modifiedData_1 = require("./lib/modifiedData");
 const addAllTypes_1 = require("./lib/addAllTypes");
 let CourtCasesService = class CourtCasesService {
-    async processExcel(file) {
+    async processExcel(file, dateRange) {
         if (!file) {
             throw new common_1.BadRequestException('File is required');
         }
@@ -28,7 +28,7 @@ let CourtCasesService = class CourtCasesService {
             defval: null,
         });
         const data = (0, mapRows_1.mapRows)(rows);
-        const modifiedData = (0, modifiedData_1.modifyData)(data);
+        const modifiedData = (0, modifiedData_1.modifyData)(data, dateRange);
         const finalData = (0, addAllTypes_1.addAllTypes)(modifiedData);
         return finalData;
     }

@@ -21,6 +21,7 @@ export function UploadPage() {
 
     try {
       const file = e.files[0];
+
       await dispatch(uploadAndProcessExcel(file)).unwrap();
     } catch (error) {
       console.error(error);

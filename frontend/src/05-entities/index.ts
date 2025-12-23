@@ -3,8 +3,10 @@ export {
   uploadReducer,
   selectUploadTotalSize,
   selectUploadModifiedData,
+  selectUploadDateRange,
   uploadExcelApi,
   clear,
+  setDateRange,
   uploadAndProcessExcel,
 } from "./upload";
-export type { UploadState, Responsible, AggregateConfig } from "./upload";
+export type { UploadState, Responsible, AggregateConfig, UploadExcelApiProps, DateRange } from "./upload";

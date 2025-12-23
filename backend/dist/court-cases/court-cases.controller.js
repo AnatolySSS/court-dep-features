@@ -23,8 +23,11 @@ let CourtCasesController = class CourtCasesController {
     constructor(courtCasesService) {
         this.courtCasesService = courtCasesService;
     }
-    uploadExcel(file) {
-        return this.courtCasesService.processExcel(file);
+    uploadExcel(file, startDate, endDate) {
+        return this.courtCasesService.processExcel(file, {
+            startDate: startDate ? new Date(startDate) : null,
+            endDate: endDate ? new Date(endDate) : null,
+        });
     }
     create(createCourtCaseDto) {
         return this.courtCasesService.create(createCourtCaseDto);
@@ -47,8 +50,10 @@ __decorate([
     (0, common_1.Post)('upload'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file')),
     __param(0, (0, common_1.UploadedFile)()),
+    __param(1, (0, common_1.Body)('startDate')),
+    __param(2, (0, common_1.Body)('endDate')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, String, String]),
     __metadata("design:returntype", void 0)
 ], CourtCasesController.prototype, "uploadExcel", null);
 __decorate([

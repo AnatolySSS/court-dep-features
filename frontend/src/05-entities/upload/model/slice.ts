@@ -7,6 +7,7 @@ const initialState: UploadState = {
   data: null,
   modifiedData: null,
   error: null,
+  dateRange: null,
   instances: {
     firstInstance: "Первая инстанция",
     appealInstance: "Апелляционная инстанция",
@@ -22,8 +23,12 @@ const uploadSlice = createSlice({
     clear(state) {
       state.totalSize = 0;
       state.data = null;
+      state.dateRange = null;
       state.modifiedData = null;
       state.error = null;
+    },
+    setDateRange(state, action) {
+      state.dateRange = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -38,6 +43,6 @@ const uploadSlice = createSlice({
   },
 });
 
-export const { clear } = uploadSlice.actions;
+export const { clear, setDateRange } = uploadSlice.actions;
 
 export const uploadReducer = uploadSlice.reducer;

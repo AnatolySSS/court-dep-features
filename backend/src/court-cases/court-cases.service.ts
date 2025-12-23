@@ -8,7 +8,10 @@ import { addAllTypes } from './lib/addAllTypes';
 
 @Injectable()
 export class CourtCasesService {
-  async processExcel(file: Express.Multer.File) {
+  async processExcel(
+    file: Express.Multer.File,
+    dateRange?: { startDate: Date | null; endDate: Date | null },
+  ) {
     if (!file) {
       throw new BadRequestException('File is required');
     }
@@ -27,7 +30,7 @@ export class CourtCasesService {
     });
 
     const data = mapRows(rows);
-    const modifiedData = modifyData(data);
+    const modifiedData = modifyData(data, dateRange);
     const finalData = addAllTypes(modifiedData);
 
     return finalData;

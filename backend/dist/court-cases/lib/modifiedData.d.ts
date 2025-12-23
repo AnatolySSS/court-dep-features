@@ -1,4 +1,5 @@
-export declare const modifyData: (data: any[]) => {
+import { DateRange } from './aggregateResponsibles';
+export declare const modifyData: (data: any[], dateRange?: DateRange) => {
     firstInstance: {
         typeResponsibles: import("./aggregateResponsibles").Responsible[];
         objectionResponsibles: import("./aggregateResponsibles").Responsible[];

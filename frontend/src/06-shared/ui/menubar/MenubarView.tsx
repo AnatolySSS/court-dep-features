@@ -2,6 +2,7 @@ import { Menubar } from "primereact/menubar";
 import { DownloadButton } from "@/04-features";
 import { selectUploadModifiedData } from "@/05-entities";
 import { useSelector } from "react-redux";
+import { CalendarComponent } from "./components";
 
 type Props = {
   onToggleSidebar: () => void;
@@ -19,7 +20,8 @@ export const MenubarView = ({ onToggleSidebar }: Props) => {
   );
 
   const end = (
-    <div className="flex align-items-center gap-2">
+    <div className="flex align-items-center gap-5">
+      <CalendarComponent />
       <DownloadButton totalTypes={totalTypes} />
     </div>
   );

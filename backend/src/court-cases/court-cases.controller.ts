@@ -20,8 +20,15 @@ export class CourtCasesController {
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  uploadExcel(@UploadedFile() file: Express.Multer.File) {
-    return this.courtCasesService.processExcel(file);
+  uploadExcel(
+    @UploadedFile() file: Express.Multer.File,
+    @Body('startDate') startDate?: string,
+    @Body('endDate') endDate?: string,
+  ) {
+    return this.courtCasesService.processExcel(file, {
+      startDate: startDate ? new Date(startDate) : null,
+      endDate: endDate ? new Date(endDate) : null,
+    });
   }
 
   @Post()

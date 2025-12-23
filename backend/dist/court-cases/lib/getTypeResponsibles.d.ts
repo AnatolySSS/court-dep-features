@@ -1,1 +1,2 @@
-export declare function getTypeResponsibles(data: any[], instanceKey: string): import("./aggregateResponsibles").Responsible[];
+import { DateRange } from './aggregateResponsibles';
+export declare function getTypeResponsibles(data: any[], instanceKey: string, dateRange?: DateRange): import("./aggregateResponsibles").Responsible[];
