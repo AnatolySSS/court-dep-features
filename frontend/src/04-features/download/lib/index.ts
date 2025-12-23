@@ -1,0 +1,1 @@
+export { downloadTotalTypesExcel } from "./downloadTotalTypesExcel";
