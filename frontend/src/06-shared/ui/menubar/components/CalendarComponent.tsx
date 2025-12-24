@@ -23,6 +23,7 @@ export const CalendarComponent = () => {
       <div className="p-inputgroup flex-1">
         <Button icon="pi pi-times" className="p-button-primary" onClick={onClear} />
         <Calendar
+          placeholder="Диапазон дат"
           value={dateRange}
           onChange={onChange}
           selectionMode="range"
