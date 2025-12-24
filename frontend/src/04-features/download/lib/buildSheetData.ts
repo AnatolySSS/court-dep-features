@@ -15,7 +15,10 @@ export const buildSheetData = (
     if (instanceKey === "allInstances") continue;
 
     const instance = totalTypes[instanceKey];
-    const list: Responsible[] = instance?.[field] ?? [];
+    const list: Responsible[] = (instance?.[field] ?? [])
+      .slice() // 👈 делаем копию
+      .sort((a: Responsible, b: Responsible) => a.name.localeCompare(b.name, "ru", { sensitivity: "base" }));
+    console.log(list);
 
     for (const item of list) {
       const key = item.name.trim().toLowerCase();
