@@ -37,21 +37,26 @@ export function aggregateResponsibles(
       const rawDate = item[instanceKey]?.[dateField];
       const parsedDate = rawDate ? parseMDY(rawDate) : null;
 
-      // Если дата невалидна, логируем и пропускаем
-      if (!parsedDate) {
-        return acc;
-      }
+      const inRange = parsedDate && isInRange(parsedDate, startDate, endDate);
 
       // 🔥 ФИЛЬТРАЦИЯ ПО ДАТЕ
-      if (parsedDate && !isInRange(parsedDate, startDate, endDate)) {
+      if (startDate && endDate && !inRange) {
         return acc;
       }
 
+      // Создаем запись, если её нет
       if (!acc[name]) {
         acc[name] = { name, assigned: 0, completed: 0, percent: 0 };
       }
 
-      acc[name].assigned += 1;
+      //Если нет даты или дата в диапазоне, то считаем все
+      if ((!startDate && !endDate) || inRange) {
+        console.log(inRange, parsedDate, startDate, endDate);
+
+        acc[name].assigned += 1;
+      }
+
+      //Если есть дата и она в диапазоне, то считаем выполненные
       if (parsedDate) acc[name].completed += 1;
 
       acc[name].percent = acc[name].assigned

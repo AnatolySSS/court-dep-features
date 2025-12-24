@@ -12,16 +12,17 @@ function aggregateResponsibles(data, { instanceKey, nameField, dateField, dateRa
             return acc;
         const rawDate = item[instanceKey]?.[dateField];
         const parsedDate = rawDate ? (0, parseMDY_1.parseMDY)(rawDate) : null;
-        if (!parsedDate) {
-            return acc;
-        }
-        if (parsedDate && !(0, inRange_1.isInRange)(parsedDate, startDate, endDate)) {
+        const inRange = parsedDate && (0, inRange_1.isInRange)(parsedDate, startDate, endDate);
+        if (startDate && endDate && !inRange) {
             return acc;
         }
         if (!acc[name]) {
             acc[name] = { name, assigned: 0, completed: 0, percent: 0 };
         }
-        acc[name].assigned += 1;
+        if ((!startDate && !endDate) || inRange) {
+            console.log(inRange, parsedDate, startDate, endDate);
+            acc[name].assigned += 1;
+        }
         if (parsedDate)
             acc[name].completed += 1;
         acc[name].percent = acc[name].assigned
