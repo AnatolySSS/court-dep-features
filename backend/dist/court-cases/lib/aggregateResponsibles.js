@@ -20,7 +20,6 @@ function aggregateResponsibles(data, { instanceKey, nameField, dateField, dateRa
             acc[name] = { name, assigned: 0, completed: 0, percent: 0 };
         }
         if ((!startDate && !endDate) || inRange) {
-            console.log(inRange, parsedDate, startDate, endDate);
             acc[name].assigned += 1;
         }
         if (parsedDate)

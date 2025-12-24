@@ -12,6 +12,7 @@ const common_1 = require("@nestjs/common");
 const XLSX = require("xlsx");
 const modifiedData_1 = require("./lib/modifiedData");
 const addAllTypes_1 = require("./lib/addAllTypes");
+const trimSheet_1 = require("./lib/trimSheet");
 let CourtCasesService = class CourtCasesService {
     async processExcel(file, dateRange) {
         if (!file) {
@@ -22,6 +23,8 @@ let CourtCasesService = class CourtCasesService {
         }
         const workbook = XLSX.read(file.buffer, { type: 'buffer' });
         const sheet = workbook.Sheets[workbook.SheetNames[0]];
+        (0, trimSheet_1.trimSheet)(sheet);
+        console.log(sheet['!ref']);
         const rows = XLSX.utils.sheet_to_json(sheet, {
             header: 1,
             raw: false,

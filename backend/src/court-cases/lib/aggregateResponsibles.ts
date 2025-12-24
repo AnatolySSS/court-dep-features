@@ -1,4 +1,3 @@
-import { log } from 'console';
 import { isInRange } from './inRange';
 import { parseMDY } from './parseMDY';
 
@@ -51,8 +50,6 @@ export function aggregateResponsibles(
 
       //Если нет даты или дата в диапазоне, то считаем все
       if ((!startDate && !endDate) || inRange) {
-        console.log(inRange, parsedDate, startDate, endDate);
-
         acc[name].assigned += 1;
       }
 

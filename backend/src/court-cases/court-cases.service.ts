@@ -5,6 +5,7 @@ import { UpdateCourtCaseDto } from './dto/update-court-case.dto';
 import * as XLSX from 'xlsx';
 import { modifyData } from './lib/modifiedData';
 import { addAllTypes } from './lib/addAllTypes';
+import { trimSheet } from './lib/trimSheet';
 
 @Injectable()
 export class CourtCasesService {
@@ -23,6 +24,8 @@ export class CourtCasesService {
     const workbook = XLSX.read(file.buffer, { type: 'buffer' });
 
     const sheet = workbook.Sheets[workbook.SheetNames[0]];
+    trimSheet(sheet);
+    console.log(sheet['!ref']);
     const rows = XLSX.utils.sheet_to_json(sheet, {
       header: 1,
       raw: false,

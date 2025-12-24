@@ -1,6 +1,7 @@
 export const mapRows = (rows: any[]) => {
   const groupHeaders = rows[0];
   const keys = rows[1];
+
   const dataRows = rows.slice(2);
 
   return dataRows.map((row) => {
