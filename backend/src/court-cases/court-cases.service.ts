@@ -36,7 +36,7 @@ export class CourtCasesService {
     const modifiedData = modifyData(data, dateRange);
     const finalData = addAllTypes(modifiedData);
 
-    return { finalData, data };
+    return { finalData, data: [] };
   }
 
   create(createCourtCaseDto: CreateCourtCaseDto) {

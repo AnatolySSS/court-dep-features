@@ -16,7 +16,6 @@ export const uploadExcelApi = async ({ file, dateRange }: UploadExcelApiProps) =
 
   const { data } = await instance.post("/court-cases/upload", formData);
 
-  console.log(data);
   (window as any).courtData = data;
 
   return data.finalData;

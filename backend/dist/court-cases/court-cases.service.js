@@ -32,7 +32,7 @@ let CourtCasesService = class CourtCasesService {
         const data = (0, mapRows_1.mapRows)(rows);
         const modifiedData = (0, modifiedData_1.modifyData)(data, dateRange);
         const finalData = (0, addAllTypes_1.addAllTypes)(modifiedData);
-        return { finalData, data };
+        return { finalData, data: [] };
     }
     create(createCourtCaseDto) {
         return 'This action adds a new courtCase';

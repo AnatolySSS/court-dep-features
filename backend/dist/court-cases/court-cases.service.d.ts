@@ -6,7 +6,7 @@ export declare class CourtCasesService {
         endDate: Date | null;
     }): Promise<{
         finalData: any;
-        data: Record<string, any>[];
+        data: never[];
     }>;
     create(createCourtCaseDto: CreateCourtCaseDto): string;
     findAll(): string;

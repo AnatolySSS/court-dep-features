@@ -24,8 +24,6 @@ export function UploadPage() {
   };
 
   const onUpload = async (e: FileUploadSelectEvent) => {
-    console.log("uoload");
-
     setLoading(true);
 
     try {

@@ -6,7 +6,7 @@ export declare class CourtCasesController {
     constructor(courtCasesService: CourtCasesService);
     uploadExcel(file: Express.Multer.File, startDate?: string, endDate?: string): Promise<{
         finalData: any;
-        data: Record<string, any>[];
+        data: never[];
     }>;
     create(createCourtCaseDto: CreateCourtCaseDto): string;
     findAll(): string;
