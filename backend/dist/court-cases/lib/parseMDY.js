@@ -1,9 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.parseMDY = void 0;
+const convertDMYtoMDY_1 = require("./convertDMYtoMDY");
 const parseMDY = (dateStr) => {
     if (!dateStr)
         return null;
+    if (dateStr.includes('.')) {
+        const converted = (0, convertDMYtoMDY_1.convertDMYtoMDY)(dateStr);
+        if (!converted)
+            return null;
+        dateStr = converted;
+    }
     const parts = dateStr.split('/');
     if (parts.length !== 3)
         return null;
@@ -12,7 +19,7 @@ const parseMDY = (dateStr) => {
         return null;
     }
     const fullYear = y < 100 ? 2000 + y : y;
-    const date = new Date(fullYear, m - 1, d);
+    const date = new Date(Date.UTC(fullYear, m - 1, d));
     if (Number.isNaN(date.getTime())) {
         return null;
     }

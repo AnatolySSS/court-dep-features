@@ -14,11 +14,12 @@ export const uploadExcelApi = async ({ file, dateRange }: UploadExcelApiProps) =
     formData.append("endDate", toDateString(dateRange.endDate));
   }
 
-  console.log(toDateString(dateRange.startDate));
-
   const { data } = await instance.post("/court-cases/upload", formData);
 
-  return data;
+  console.log(data);
+  (window as any).courtData = data;
+
+  return data.finalData;
 };
 
 function toDateString(date: Date | null): string {

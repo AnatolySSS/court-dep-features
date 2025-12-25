@@ -25,7 +25,7 @@ export class CourtCasesService {
 
     const sheet = workbook.Sheets[workbook.SheetNames[0]];
     trimSheet(sheet);
-    console.log(sheet['!ref']);
+
     const rows = XLSX.utils.sheet_to_json(sheet, {
       header: 1,
       raw: false,
@@ -36,7 +36,7 @@ export class CourtCasesService {
     const modifiedData = modifyData(data, dateRange);
     const finalData = addAllTypes(modifiedData);
 
-    return finalData;
+    return { finalData, data };
   }
 
   create(createCourtCaseDto: CreateCourtCaseDto) {

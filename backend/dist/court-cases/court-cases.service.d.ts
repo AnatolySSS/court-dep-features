@@ -4,7 +4,10 @@ export declare class CourtCasesService {
     processExcel(file: Express.Multer.File, dateRange?: {
         startDate: Date | null;
         endDate: Date | null;
-    }): Promise<any>;
+    }): Promise<{
+        finalData: any;
+        data: Record<string, any>[];
+    }>;
     create(createCourtCaseDto: CreateCourtCaseDto): string;
     findAll(): string;
     findOne(id: number): string;

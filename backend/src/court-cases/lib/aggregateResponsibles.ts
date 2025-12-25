@@ -33,7 +33,7 @@ export function aggregateResponsibles(
 
       if (!name) return acc;
 
-      const rawDate = item[instanceKey]?.[dateField];
+      const rawDate = item[instanceKey]?.[dateField]?.trim();
       const parsedDate = rawDate ? parseMDY(rawDate) : null;
 
       const inRange = parsedDate && isInRange(parsedDate, startDate, endDate);

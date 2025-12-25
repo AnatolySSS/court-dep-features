@@ -10,7 +10,7 @@ function aggregateResponsibles(data, { instanceKey, nameField, dateField, dateRa
         const name = rawName?.replace(/\b\d{2}\.+\d{2}\.*(\d{4})*\b/, '').trim();
         if (!name)
             return acc;
-        const rawDate = item[instanceKey]?.[dateField];
+        const rawDate = item[instanceKey]?.[dateField]?.trim();
         const parsedDate = rawDate ? (0, parseMDY_1.parseMDY)(rawDate) : null;
         const inRange = parsedDate && (0, inRange_1.isInRange)(parsedDate, startDate, endDate);
         if (startDate && endDate && !inRange) {
