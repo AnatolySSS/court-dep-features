@@ -18,18 +18,17 @@ export const buildSheetData = (
     const list: Responsible[] = (instance?.[field] ?? [])
       .slice() // 👈 делаем копию
       .sort((a: Responsible, b: Responsible) => a.name.localeCompare(b.name, "ru", { sensitivity: "base" }));
-    console.log(list);
 
     for (const item of list) {
-      const key = item.name.trim().toLowerCase();
+      const key = item.name.trim();
 
       if (!map.has(key)) {
         map.set(key, {
           name: item.name,
           first: 0,
           appeal: 0,
-          cassation: 0,
-          cassation2: 0,
+          cass: 0,
+          cass2: 0,
           total: 0,
         });
       }
@@ -39,8 +38,8 @@ export const buildSheetData = (
       // сопоставляем ключ инстанции → колонку
       if (instanceKey.includes("first")) row.first += item.assigned;
       if (instanceKey.includes("appeal")) row.appeal += item.assigned;
-      if (instanceKey.includes("cassation2")) row.cassation2 += item.assigned;
-      else if (instanceKey.includes("cassation")) row.cassation += item.assigned;
+      if (instanceKey.includes("cass2")) row.cass2 += item.assigned;
+      else if (instanceKey.includes("cass")) row.cass += item.assigned;
 
       row.total += item.assigned;
     }
@@ -50,8 +49,8 @@ export const buildSheetData = (
     ФИО: r.name,
     "Первая инстанция": r.first,
     "Апелляционная инстанция": r.appeal,
-    "Кассационная инстанция": r.cassation,
-    "Кассационная инстанция 2": r.cassation2,
+    "Кассационная инстанция": r.cass,
+    "Кассационная инстанция 2": r.cass2,
     Всего: r.total,
   }));
 };
