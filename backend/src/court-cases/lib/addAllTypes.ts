@@ -11,6 +11,7 @@ export const addAllTypes = (modifiedData: any) => {
 
   const allTypeResponsibles: Responsible[] = [];
   const allObjectionResponsibles: Responsible[] = [];
+  const allApproveResponsibles: Responsible[] = [];
 
   // allTypeResponsibles для конкретной инстанции
   for (const instanceKey in totalTypes) {
@@ -19,20 +20,24 @@ export const addAllTypes = (modifiedData: any) => {
     instance.allTypeResponsibles = mergeResponsibles(
       instance.typeResponsibles,
       instance.objectionResponsibles,
+      instance.approveResponsibles,
     );
 
     // накапливаем данные для allInstances
     allTypeResponsibles.push(...instance.typeResponsibles);
     allObjectionResponsibles.push(...instance.objectionResponsibles);
+    allApproveResponsibles.push(...instance.approveResponsibles);
   }
 
   // агрегированные данные по всем инстанциям
   totalTypes.allInstances = {
-    typeResponsibles: mergeResponsibles(allTypeResponsibles, []),
-    objectionResponsibles: mergeResponsibles(allObjectionResponsibles, []),
+    typeResponsibles: mergeResponsibles(allTypeResponsibles, [], []),
+    objectionResponsibles: mergeResponsibles(allObjectionResponsibles, [], []),
+    approveResponsibles: mergeResponsibles(allApproveResponsibles, [], []),
     allTypeResponsibles: mergeResponsibles(
       allTypeResponsibles,
       allObjectionResponsibles,
+      allApproveResponsibles,
     ),
   };
 
@@ -48,6 +53,7 @@ function normalizeName(name: string) {
 export function mergeResponsibles(
   typeResponsibles: Responsible[],
   objectionResponsibles: Responsible[],
+  approveResponsibles: Responsible[],
 ): Responsible[] {
   const map = new Map<string, Responsible>();
 
@@ -74,6 +80,7 @@ export function mergeResponsibles(
 
   typeResponsibles.forEach(add);
   objectionResponsibles.forEach(add);
+  approveResponsibles.forEach(add);
 
   return Array.from(map.values());
 }

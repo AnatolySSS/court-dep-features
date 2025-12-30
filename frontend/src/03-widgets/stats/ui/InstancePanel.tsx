@@ -5,10 +5,16 @@ import type { Responsible } from "@/05-entities";
 type Props = {
   typeResponsibles: Responsible[];
   objectionResponsibles: Responsible[];
+  approveResponsibles: Responsible[];
   allTypeResponsibles: Responsible[];
 };
 
-export function InstancePanel({ typeResponsibles, objectionResponsibles, allTypeResponsibles }: Props) {
+export function InstancePanel({
+  typeResponsibles,
+  objectionResponsibles,
+  approveResponsibles,
+  allTypeResponsibles,
+}: Props) {
   return (
     <TabView>
       <TabPanel header="Типизация исков">
@@ -16,6 +22,9 @@ export function InstancePanel({ typeResponsibles, objectionResponsibles, allType
       </TabPanel>
       <TabPanel header="Отзывы / возражения">
         <InstanceSection title="Отзывы / возражения" data={objectionResponsibles} />
+      </TabPanel>
+      <TabPanel header="Согласование возражений">
+        <InstanceSection title="Согласование возражений" data={approveResponsibles} />
       </TabPanel>
       <TabPanel header="Всего">
         <InstanceSection title="Всего" data={allTypeResponsibles} />

@@ -16,6 +16,10 @@ export function downloadTotalTypesExcel(totalTypes: any) {
       field: "objectionResponsibles",
     },
     {
+      name: "Согласование возражений",
+      field: "approveResponsibles",
+    },
+    {
       name: "Всего",
       field: "allTypeResponsibles",
     },

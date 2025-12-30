@@ -3,17 +3,21 @@ export declare const modifyData: (data: any[], dateRange?: DateRange) => {
     firstInstance: {
         typeResponsibles: import("./aggregateResponsibles").Responsible[];
         objectionResponsibles: import("./aggregateResponsibles").Responsible[];
+        approveResponsibles: import("./aggregateResponsibles").Responsible[];
     };
     appealInstance: {
         typeResponsibles: import("./aggregateResponsibles").Responsible[];
         objectionResponsibles: import("./aggregateResponsibles").Responsible[];
+        approveResponsibles: import("./aggregateResponsibles").Responsible[];
     };
     cassInstance: {
         typeResponsibles: import("./aggregateResponsibles").Responsible[];
         objectionResponsibles: import("./aggregateResponsibles").Responsible[];
+        approveResponsibles: import("./aggregateResponsibles").Responsible[];
     };
     cass2Instance: {
         typeResponsibles: import("./aggregateResponsibles").Responsible[];
         objectionResponsibles: import("./aggregateResponsibles").Responsible[];
+        approveResponsibles: import("./aggregateResponsibles").Responsible[];
     };
 };

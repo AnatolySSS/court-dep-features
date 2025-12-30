@@ -6,16 +6,19 @@ const addAllTypes = (modifiedData) => {
     const totalTypes = { ...modifiedData };
     const allTypeResponsibles = [];
     const allObjectionResponsibles = [];
+    const allApproveResponsibles = [];
     for (const instanceKey in totalTypes) {
         const instance = totalTypes[instanceKey];
-        instance.allTypeResponsibles = mergeResponsibles(instance.typeResponsibles, instance.objectionResponsibles);
+        instance.allTypeResponsibles = mergeResponsibles(instance.typeResponsibles, instance.objectionResponsibles, instance.approveResponsibles);
         allTypeResponsibles.push(...instance.typeResponsibles);
         allObjectionResponsibles.push(...instance.objectionResponsibles);
+        allApproveResponsibles.push(...instance.approveResponsibles);
     }
     totalTypes.allInstances = {
-        typeResponsibles: mergeResponsibles(allTypeResponsibles, []),
-        objectionResponsibles: mergeResponsibles(allObjectionResponsibles, []),
-        allTypeResponsibles: mergeResponsibles(allTypeResponsibles, allObjectionResponsibles),
+        typeResponsibles: mergeResponsibles(allTypeResponsibles, [], []),
+        objectionResponsibles: mergeResponsibles(allObjectionResponsibles, [], []),
+        approveResponsibles: mergeResponsibles(allApproveResponsibles, [], []),
+        allTypeResponsibles: mergeResponsibles(allTypeResponsibles, allObjectionResponsibles, allApproveResponsibles),
     };
     return totalTypes;
 };
@@ -23,7 +26,7 @@ exports.addAllTypes = addAllTypes;
 function normalizeName(name) {
     return name.trim().toLowerCase();
 }
-function mergeResponsibles(typeResponsibles, objectionResponsibles) {
+function mergeResponsibles(typeResponsibles, objectionResponsibles, approveResponsibles) {
     const map = new Map();
     const add = (item) => {
         const key = normalizeName(item.name);
@@ -43,6 +46,7 @@ function mergeResponsibles(typeResponsibles, objectionResponsibles) {
     };
     typeResponsibles.forEach(add);
     objectionResponsibles.forEach(add);
+    approveResponsibles.forEach(add);
     return Array.from(map.values());
 }
 //# sourceMappingURL=addAllTypes.js.map

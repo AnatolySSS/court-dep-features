@@ -5,5 +5,5 @@ type Responsible = {
     percent: number;
 };
 export declare const addAllTypes: (modifiedData: any) => any;
-export declare function mergeResponsibles(typeResponsibles: Responsible[], objectionResponsibles: Responsible[]): Responsible[];
+export declare function mergeResponsibles(typeResponsibles: Responsible[], objectionResponsibles: Responsible[], approveResponsibles: Responsible[]): Responsible[];
 export {};
