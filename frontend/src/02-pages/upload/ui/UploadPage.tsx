@@ -6,12 +6,14 @@ import type { AppDispatch } from "@/01-app";
 import { uploadAndProcessExcel } from "@/05-entities";
 import { FileUploadView } from "@/06-shared";
 import styles from "./UploadPage.module.css";
+import { useNavigate } from "react-router-dom";
 
 export function UploadPage() {
   const dispatch = useDispatch<AppDispatch>();
   const toast = useRef<Toast>(null);
   const [totalSize, setTotalSize] = useState(0);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const onSelect = (e: FileUploadSelectEvent) => {
     let _totalSize = totalSize;
@@ -30,7 +32,8 @@ export function UploadPage() {
       const file = e.files[0];
 
       await dispatch(uploadAndProcessExcel(file)).unwrap();
-      toast.current?.show({ severity: "success", summary: "Success", detail: "Данные обработаны" });
+
+      navigate("/stats");
     } catch (error) {
       console.error(error);
       toast.current?.show({

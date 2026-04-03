@@ -58,7 +58,7 @@ export function FileUploadView({ totalSize, onSelect, onUpload, onClear, onRemov
   };
 
   const chooseOptions = {
-    icon: "pi pi-fw pi-images",
+    icon: "pi pi-fw pi-upload",
     iconOnly: true,
     className: "custom-choose-btn p-button-rounded p-button-outlined",
   };
