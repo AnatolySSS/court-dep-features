@@ -16,13 +16,21 @@ export type DateRange = {
 export type AggregateConfig = {
   instanceKey: string;
   nameField: string;
-  dateField: string;
+  dateAssigned: string;
+  dateCompleted: string;
+  // dateField: string;
   dateRange?: DateRange;
 };
 
 export function aggregateResponsibles(
   data: any[],
-  { instanceKey, nameField, dateField, dateRange }: AggregateConfig,
+  {
+    instanceKey,
+    nameField,
+    dateAssigned,
+    dateCompleted,
+    dateRange,
+  }: AggregateConfig,
 ): Responsible[] {
   const { startDate, endDate } = dateRange ?? {};
 
@@ -33,7 +41,11 @@ export function aggregateResponsibles(
 
       if (!name) return acc;
 
-      const rawDate = item[instanceKey]?.[dateField]?.trim();
+      if (item['Общая информация']?.['Общий номер'] == '4487') {
+        console.log(item[instanceKey]?.[dateAssigned]);
+      }
+
+      const rawDate = extractDate(item[instanceKey]?.[dateAssigned])?.trim();
       const parsedDate = rawDate ? parseMDY(rawDate) : null;
 
       const inRange = parsedDate && isInRange(parsedDate, startDate, endDate);
@@ -54,7 +66,8 @@ export function aggregateResponsibles(
       }
 
       //Если есть дата и она в диапазоне, то считаем выполненные
-      if (parsedDate) acc[name].completed += 1;
+      if (parsedDate && item[instanceKey]?.[dateCompleted])
+        acc[name].completed += 1;
 
       acc[name].percent = acc[name].assigned
         ? acc[name].completed / acc[name].assigned
@@ -63,4 +76,15 @@ export function aggregateResponsibles(
       return acc;
     }, {}),
   );
+}
+
+const extractDate = (str: string) => {
+  if (isValidDateFormat(str)) return str;
+
+  const match = str?.match(/\b(\d{2}\.\d{2}(?:\.\d{2,4})?)\b/);
+  return match ? match[1] : null;
+};
+
+function isValidDateFormat(str: string) {
+  return /^\d{1,2}\/\d{1,2}\/\d{2,4}$/.test(str);
 }

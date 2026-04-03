@@ -1,6 +1,4 @@
 import { CourtCasesService } from './court-cases.service';
-import { CreateCourtCaseDto } from './dto/create-court-case.dto';
-import { UpdateCourtCaseDto } from './dto/update-court-case.dto';
 export declare class CourtCasesController {
     private readonly courtCasesService;
     constructor(courtCasesService: CourtCasesService);
@@ -8,9 +6,4 @@ export declare class CourtCasesController {
         finalData: any;
         data: never[];
     }>;
-    create(createCourtCaseDto: CreateCourtCaseDto): string;
-    findAll(): string;
-    findOne(id: string): string;
-    update(id: string, updateCourtCaseDto: UpdateCourtCaseDto): string;
-    remove(id: string): string;
 }

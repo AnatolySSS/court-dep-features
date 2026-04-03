@@ -6,7 +6,8 @@ function getTypeResponsibles(data, instanceKey, dateRange) {
     return (0, aggregateResponsibles_1.aggregateResponsibles)(data, {
         instanceKey,
         nameField: 'Ответственный за типизацию иска',
-        dateField: 'Дата типизации',
+        dateAssigned: 'Ответственный за типизацию иска',
+        dateCompleted: 'Дата типизации',
         dateRange,
     });
 }

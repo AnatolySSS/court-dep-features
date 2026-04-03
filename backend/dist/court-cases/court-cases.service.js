@@ -32,22 +32,8 @@ let CourtCasesService = class CourtCasesService {
         const data = (0, mapRows_1.mapRows)(rows);
         const modifiedData = (0, modifiedData_1.modifyData)(data, dateRange);
         const finalData = (0, addAllTypes_1.addAllTypes)(modifiedData);
+        console.log(modifiedData.firstInstance.typeResponsibles);
         return { finalData, data: [] };
-    }
-    create(createCourtCaseDto) {
-        return 'This action adds a new courtCase';
-    }
-    findAll() {
-        return `This action returns all courtCases`;
-    }
-    findOne(id) {
-        return `This action returns a #${id} courtCase`;
-    }
-    update(id, updateCourtCaseDto) {
-        return `This action updates a #${id} courtCase`;
-    }
-    remove(id) {
-        return `This action removes a #${id} courtCase`;
     }
 };
 exports.CourtCasesService = CourtCasesService;

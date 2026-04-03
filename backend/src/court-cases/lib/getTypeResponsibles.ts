@@ -8,7 +8,9 @@ export function getTypeResponsibles(
   return aggregateResponsibles(data, {
     instanceKey,
     nameField: 'Ответственный за типизацию иска',
-    dateField: 'Дата типизации',
+    dateAssigned: 'Ответственный за типизацию иска',
+    dateCompleted: 'Дата типизации',
+    // dateField: 'Дата типизации',
     dateRange,
   });
 }

@@ -11,7 +11,8 @@ export type DateRange = {
 export type AggregateConfig = {
     instanceKey: string;
     nameField: string;
-    dateField: string;
+    dateAssigned: string;
+    dateCompleted: string;
     dateRange?: DateRange;
 };
-export declare function aggregateResponsibles(data: any[], { instanceKey, nameField, dateField, dateRange }: AggregateConfig): Responsible[];
+export declare function aggregateResponsibles(data: any[], { instanceKey, nameField, dateAssigned, dateCompleted, dateRange, }: AggregateConfig): Responsible[];

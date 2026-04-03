@@ -6,7 +6,8 @@ function getObjectionsResponsibles(data, instanceKey, dateRange) {
     return (0, aggregateResponsibles_1.aggregateResponsibles)(data, {
         instanceKey,
         nameField: 'Исполнитель',
-        dateField: 'Дата направления отзыва',
+        dateAssigned: 'Дата распределения в работу возражений',
+        dateCompleted: 'Дата направления отзыва',
         dateRange,
     });
 }

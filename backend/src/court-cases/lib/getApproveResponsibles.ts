@@ -8,7 +8,9 @@ export function getApproveResponsibles(
   return aggregateResponsibles(data, {
     instanceKey,
     nameField: 'Согласовант возражения',
-    dateField: 'Дата согласования возражения',
+    dateAssigned: 'Дата направления на согласование',
+    dateCompleted: 'Дата согласования возражения',
+    // dateField: 'Дата согласования возражения',
     dateRange,
   });
 }

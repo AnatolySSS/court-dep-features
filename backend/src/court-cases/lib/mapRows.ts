@@ -8,7 +8,7 @@ export const mapRows = (rows: any[]) => {
     const obj: Record<string, any> = {};
     let currentGroup = '';
 
-    row.forEach((cell, i) => {
+    row.forEach((cell: any, i: string | number) => {
       const group = groupHeaders[i] ?? currentGroup;
       currentGroup = group;
 

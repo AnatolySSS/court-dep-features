@@ -1,7 +1,5 @@
 import { mapRows } from './lib/mapRows';
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { CreateCourtCaseDto } from './dto/create-court-case.dto';
-import { UpdateCourtCaseDto } from './dto/update-court-case.dto';
 import * as XLSX from 'xlsx';
 import { modifyData } from './lib/modifiedData';
 import { addAllTypes } from './lib/addAllTypes';
@@ -24,7 +22,7 @@ export class CourtCasesService {
     const workbook = XLSX.read(file.buffer, { type: 'buffer' });
 
     const sheet = workbook.Sheets[workbook.SheetNames[0]];
-    trimSheet(sheet);
+    trimSheet(sheet); //ограничивает данные на таблице только заполненными столбцами и ячейками
 
     const rows = XLSX.utils.sheet_to_json(sheet, {
       header: 1,
@@ -33,29 +31,10 @@ export class CourtCasesService {
     });
 
     const data = mapRows(rows);
+
     const modifiedData = modifyData(data, dateRange);
     const finalData = addAllTypes(modifiedData);
-
+    console.log(modifiedData.firstInstance.typeResponsibles);
     return { finalData, data: [] };
-  }
-
-  create(createCourtCaseDto: CreateCourtCaseDto) {
-    return 'This action adds a new courtCase';
-  }
-
-  findAll() {
-    return `This action returns all courtCases`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} courtCase`;
-  }
-
-  update(id: number, updateCourtCaseDto: UpdateCourtCaseDto) {
-    return `This action updates a #${id} courtCase`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} courtCase`;
   }
 }
