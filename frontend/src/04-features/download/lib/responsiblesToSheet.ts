@@ -7,7 +7,8 @@ export const responsiblesToSheet = (data: Responsible[]) => {
       Name: r.name,
       Assigned: r.assigned,
       Completed: r.completed,
-      Percent: Math.round(r.percent * 100) + "%",
+      InWork: r.inWork,
+      Percent: Math.round((r.percent ?? 0) * 100) + "%",
     })),
   );
 };

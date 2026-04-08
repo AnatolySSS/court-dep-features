@@ -7,7 +7,7 @@ type Responsible = {
 
 export const buildSheetData = (
   totalTypes: any,
-  field: "typeResponsibles" | "objectionResponsibles" | "approveResponsibles" | "allTypeResponsibles"
+  field: "typeResponsibles" | "objectionResponsibles" | "approveResponsibles" | "allTypeResponsibles",
 ) => {
   const map = new Map<string, any>();
 

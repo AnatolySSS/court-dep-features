@@ -1,7 +1,6 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Sidebar } from "primereact/sidebar";
 import { Ripple } from "primereact/ripple";
-import { StyleClass } from "primereact/styleclass";
 import { NavLink } from "react-router-dom";
 import { Divider } from "primereact/divider";
 
@@ -13,7 +12,6 @@ type Props = {
 };
 
 export const SidebarView = ({ visible, onHide }: Props) => {
-  const btnRef1 = useRef<any>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
