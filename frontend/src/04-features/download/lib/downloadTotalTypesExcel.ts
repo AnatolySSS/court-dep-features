@@ -1,6 +1,6 @@
 import * as XLSX from "xlsx";
 import { buildSheetData } from "./buildSheetData";
-import type { DateRange } from "@/05-entities";
+import type { DateRange } from "@/04-features";
 import { store } from "@/01-app";
 
 export function downloadTotalTypesExcel(totalTypes: any) {
@@ -76,6 +76,6 @@ export function downloadTotalTypesExcel(totalTypes: any) {
       day: "2-digit",
       hour: "2-digit",
       minute: "2-digit",
-    })}.xlsx`
+    })}.xlsx`,
   );
 }

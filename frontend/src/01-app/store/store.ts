@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { uploadReducer } from "@/05-entities";
+import { uploadReducer } from "@/04-features";
+import { baseApi } from "@/06-shared";
 
 // middleware для логирования изменений upload.data
 const uploadLoggerMiddleware = (store: any) => (next: any) => (action: any) => {
@@ -19,15 +20,15 @@ const uploadLoggerMiddleware = (store: any) => (next: any) => (action: any) => {
 export const store = configureStore({
   reducer: {
     upload: uploadReducer,
+    [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(uploadLoggerMiddleware),
+    })
+      .concat(uploadLoggerMiddleware)
+      .concat(baseApi.middleware),
 });
-
-// временно для отладки
-(window as any).store = store;
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

@@ -1,15 +1,19 @@
-import { useDispatch } from "react-redux";
 import { useRef, useState } from "react";
 import type { FileUploadSelectEvent } from "primereact/fileupload";
 import { Toast } from "primereact/toast";
-import type { AppDispatch } from "@/01-app";
-import { uploadAndProcessExcel } from "@/05-entities";
-import { FileUploadView } from "@/06-shared";
 import styles from "./UploadPage.module.css";
 import { useNavigate } from "react-router-dom";
+import { FileUploadView } from "@/03-widgets";
+import { useUploadMutation } from "@/04-features/upload/api/upload.api";
+import { selectUploadDateRange } from "@/04-features/upload/model/selectors";
+import { setModifiedData } from "@/04-features/upload/model/slice";
+import { useAppDispatch, useAppSelector } from "@/01-app/store/hooks";
 
 export function UploadPage() {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
+  const [upload] = useUploadMutation();
+  const dateArr = useAppSelector(selectUploadDateRange);
+
   const toast = useRef<Toast>(null);
   const [totalSize, setTotalSize] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -31,9 +35,17 @@ export function UploadPage() {
     try {
       const file = e.files[0];
 
-      await dispatch(uploadAndProcessExcel(file)).unwrap();
+      const dateRange = {
+        startDate: dateArr ? dateArr[0] : null,
+        endDate: dateArr ? dateArr[1] : null,
+      };
 
-      navigate("/stats");
+      console.log(dateRange);
+
+      const result = await upload({ file, dateRange }).unwrap();
+      dispatch(setModifiedData(result.finalData));
+
+      navigate("/percentage");
     } catch (error) {
       console.error(error);
       toast.current?.show({

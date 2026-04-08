@@ -1,5 +1,5 @@
-import { ResponsibleTable } from "@/05-entities";
-import type { Responsible } from "@/05-entities";
+import type { Responsible } from "@/04-features";
+import { StatTable } from "./StatTable";
 
 type Props = {
   title: string;
@@ -12,7 +12,7 @@ export function InstanceSection({ title, data }: Props) {
   return (
     <section className="mb-5">
       <h3>{title}</h3>
-      <ResponsibleTable data={data} />
+      <StatTable data={data} />
     </section>
   );
 }

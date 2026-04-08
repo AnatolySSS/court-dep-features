@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { SidebarView, MenubarView } from "@/06-shared";
 import "./App.css";
+import { MenubarView, SidebarView } from "@/03-widgets";
 
 export const App = () => {
   const [sidebarVisible, setSidebarVisible] = useState(false);

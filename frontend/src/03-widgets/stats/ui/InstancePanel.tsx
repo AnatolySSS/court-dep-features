@@ -1,6 +1,6 @@
 import { TabView, TabPanel } from "primereact/tabview";
 import { InstanceSection } from "./InstanceSection";
-import type { Responsible } from "@/05-entities";
+import type { Responsible } from "@/04-features";
 
 type Props = {
   typeResponsibles: Responsible[];

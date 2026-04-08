@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { App } from "../App";
-import { StatsPage, UploadPage, ErrorPage } from "@/02-pages";
+import { PercentagePage, UploadPage, ErrorPage, DoneByPeriodPage, InWorkPage } from "@/02-pages";
 
 export const router = createBrowserRouter([
   {
@@ -13,10 +13,21 @@ export const router = createBrowserRouter([
         element: <UploadPage />,
       },
       {
-        path: "/stats",
-        element: <StatsPage />,
+        path: "/percentage",
+        element: <PercentagePage />,
       },
-      // Можно добавить другие страницы здесь
+      {
+        path: "/done-by-period",
+        element: <DoneByPeriodPage />,
+      },
+      {
+        path: "/in-work",
+        element: <InWorkPage />,
+      },
+      {
+        path: "/",
+        element: <UploadPage />,
+      },
     ],
   },
 ]);
