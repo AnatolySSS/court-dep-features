@@ -1,0 +1,32 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getPercentageData = void 0;
+const getApproveResponsibles_1 = require("./getApproveResponsibles");
+const getObjectionsResponsibles_1 = require("./getObjectionsResponsibles");
+const getTypeResponsibles_1 = require("./getTypeResponsibles");
+const getPercentageData = (data, dateRange) => {
+    return {
+        firstInstance: {
+            typeResponsibles: (0, getTypeResponsibles_1.getTypeResponsibles)(data, 'Первая инстанция', dateRange),
+            objectionResponsibles: (0, getObjectionsResponsibles_1.getObjectionsResponsibles)(data, 'Первая инстанция', dateRange),
+            approveResponsibles: (0, getApproveResponsibles_1.getApproveResponsibles)(data, 'Первая инстанция', dateRange),
+        },
+        appealInstance: {
+            typeResponsibles: (0, getTypeResponsibles_1.getTypeResponsibles)(data, 'Апелляционная инстанция', dateRange),
+            objectionResponsibles: (0, getObjectionsResponsibles_1.getObjectionsResponsibles)(data, 'Апелляционная инстанция', dateRange),
+            approveResponsibles: (0, getApproveResponsibles_1.getApproveResponsibles)(data, 'Апелляционная инстанция', dateRange),
+        },
+        cassInstance: {
+            typeResponsibles: (0, getTypeResponsibles_1.getTypeResponsibles)(data, 'Кассационная инстанция', dateRange),
+            objectionResponsibles: (0, getObjectionsResponsibles_1.getObjectionsResponsibles)(data, 'Кассационная инстанция', dateRange),
+            approveResponsibles: (0, getApproveResponsibles_1.getApproveResponsibles)(data, 'Кассационная инстанция', dateRange),
+        },
+        cass2Instance: {
+            typeResponsibles: (0, getTypeResponsibles_1.getTypeResponsibles)(data, 'Кассационная инстанция 2', dateRange),
+            objectionResponsibles: (0, getObjectionsResponsibles_1.getObjectionsResponsibles)(data, 'Кассационная инстанция 2', dateRange),
+            approveResponsibles: (0, getApproveResponsibles_1.getApproveResponsibles)(data, 'Кассационная инстанция 2', dateRange),
+        },
+    };
+};
+exports.getPercentageData = getPercentageData;
+//# sourceMappingURL=getPercentageData.js.map

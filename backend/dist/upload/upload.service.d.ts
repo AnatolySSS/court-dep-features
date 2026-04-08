@@ -3,7 +3,11 @@ export declare class CourtCasesService {
         startDate: Date | null;
         endDate: Date | null;
     }): Promise<{
-        finalData: any;
+        finalData: {
+            percentage: any;
+            doneByPeriod: any;
+            inWork: any;
+        };
         data: never[];
     }>;
 }

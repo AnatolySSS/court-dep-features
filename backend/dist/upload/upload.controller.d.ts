@@ -4,7 +4,11 @@ export declare class CourtCasesController {
     private readonly courtCasesService;
     constructor(courtCasesService: CourtCasesService);
     uploadExcel(file: Express.Multer.File, startDate?: string, endDate?: string): Promise<{
-        finalData: any;
+        finalData: {
+            percentage: any;
+            doneByPeriod: any;
+            inWork: any;
+        };
         data: never[];
     }>;
 }

@@ -10,9 +10,11 @@ exports.CourtCasesService = void 0;
 const mapRows_1 = require("./lib/mapRows");
 const common_1 = require("@nestjs/common");
 const XLSX = require("xlsx");
-const modifiedData_1 = require("./lib/modifiedData");
+const getPercentageData_1 = require("./lib/percentage-data/getPercentageData");
 const addAllTypes_1 = require("./lib/addAllTypes");
 const trimSheet_1 = require("./lib/trimSheet");
+const getDoneByPeriodData_1 = require("./lib/done-by-period-data/getDoneByPeriodData");
+const getInWorkData_1 = require("./lib/in-work-data/getInWorkData");
 let CourtCasesService = class CourtCasesService {
     async processExcel(file, dateRange) {
         if (!file) {
@@ -30,8 +32,14 @@ let CourtCasesService = class CourtCasesService {
             defval: null,
         });
         const data = (0, mapRows_1.mapRows)(rows);
-        const modifiedData = (0, modifiedData_1.modifyData)(data, dateRange);
-        const finalData = (0, addAllTypes_1.addAllTypes)(modifiedData);
+        const percentageData = (0, getPercentageData_1.getPercentageData)(data, dateRange);
+        const doneByPeriodData = (0, getDoneByPeriodData_1.getDoneByPeriodData)(data, dateRange);
+        const inWorkData = (0, getInWorkData_1.getInWorkData)(data);
+        const finalData = {
+            percentage: (0, addAllTypes_1.addAllTypes)(percentageData),
+            doneByPeriod: (0, addAllTypes_1.addAllTypes)(doneByPeriodData),
+            inWork: (0, addAllTypes_1.addAllTypes)(inWorkData),
+        };
         return { finalData, data: [] };
     }
 };

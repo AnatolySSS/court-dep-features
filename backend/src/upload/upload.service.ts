@@ -1,9 +1,11 @@
 import { mapRows } from './lib/mapRows';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import * as XLSX from 'xlsx';
-import { modifyData } from './lib/modifiedData';
+import { getPercentageData } from './lib/percentage-data/getPercentageData';
 import { addAllTypes } from './lib/addAllTypes';
 import { trimSheet } from './lib/trimSheet';
+import { getDoneByPeriodData } from './lib/done-by-period-data/getDoneByPeriodData';
+import { getInWorkData } from './lib/in-work-data/getInWorkData';
 
 @Injectable()
 export class CourtCasesService {
@@ -31,8 +33,14 @@ export class CourtCasesService {
     });
 
     const data = mapRows(rows);
-    const modifiedData = modifyData(data, dateRange);
-    const finalData = addAllTypes(modifiedData);
+    const percentageData = getPercentageData(data, dateRange);
+    const doneByPeriodData = getDoneByPeriodData(data, dateRange);
+    const inWorkData = getInWorkData(data);
+    const finalData = {
+      percentage: addAllTypes(percentageData),
+      doneByPeriod: addAllTypes(doneByPeriodData),
+      inWork: addAllTypes(inWorkData),
+    };
 
     return { finalData, data: [] };
   }

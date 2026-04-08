@@ -1,0 +1,1 @@
+{"version":3,"file":"getApproveResponsibles.js","sourceRoot":"","sources":["../../../../src/upload/lib/in-work-data/getApproveResponsibles.ts"],"names":[],"mappings":";;AAEA,wDAOC;AATD,qEAA6E;AAE7E,SAAgB,sBAAsB,CAAC,IAAW,EAAE,WAAmB;IACrE,OAAO,IAAA,+CAAsB,EAAC,IAAI,EAAE;QAClC,WAAW;QACX,SAAS,EAAE,wBAAwB;QACnC,YAAY,EAAE,kCAAkC;QAChD,aAAa,EAAE,8BAA8B;KAC9C,CAAC,CAAC;AACL,CAAC"}

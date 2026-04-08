@@ -37,10 +37,14 @@ function mergeResponsibles(typeResponsibles, objectionResponsibles, approveRespo
         const existing = map.get(key);
         const assigned = existing.assigned + item.assigned;
         const completed = existing.completed + item.completed;
+        const inWork = existing.inWork
+            ? existing.inWork + (item.inWork || 0)
+            : item.inWork || 0;
         map.set(key, {
             name: existing.name,
             assigned,
             completed,
+            inWork,
             percent: assigned === 0 ? 0 : completed / assigned,
         });
     };

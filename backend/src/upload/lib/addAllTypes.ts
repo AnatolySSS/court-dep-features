@@ -2,6 +2,7 @@ type Responsible = {
   name: string;
   assigned: number;
   completed: number;
+  inWork?: number;
   percent: number;
 };
 
@@ -69,11 +70,15 @@ export function mergeResponsibles(
 
     const assigned = existing.assigned + item.assigned;
     const completed = existing.completed + item.completed;
+    const inWork = existing.inWork
+      ? existing.inWork + (item.inWork || 0)
+      : item.inWork || 0;
 
     map.set(key, {
       name: existing.name, // оставляем первое «красивое» имя
       assigned,
       completed,
+      inWork,
       percent: assigned === 0 ? 0 : completed / assigned,
     });
   };
