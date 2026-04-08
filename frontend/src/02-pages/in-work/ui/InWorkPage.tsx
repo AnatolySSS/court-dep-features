@@ -4,7 +4,7 @@ import { InstanceTabs } from "@/03-widgets";
 import styles from "./in-work-page.module.css";
 
 export function InWorkPage() {
-  const instances = useSelector((state: RootState) => state.upload.modifiedData);
+  const instances = useSelector((state: RootState) => state.upload.modifiedData?.inWork);
 
   return (
     <div className={styles.wrapper}>

@@ -4,7 +4,7 @@ import { InstanceTabs } from "@/03-widgets";
 import styles from "./done-by-period-page.module.css";
 
 export function DoneByPeriodPage() {
-  const instances = useSelector((state: RootState) => state.upload.modifiedData);
+  const instances = useSelector((state: RootState) => state.upload.modifiedData?.doneByPeriod);
 
   return (
     <div className={styles.wrapper}>

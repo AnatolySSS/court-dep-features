@@ -3,25 +3,34 @@ export type UploadState = {
   totalSize: number;
   data: any[] | null;
   dateRange: Date[] | null;
-  modifiedData: any | null;
+  modifiedData: {
+    percentage: ModifiedDataType;
+    doneByPeriod: ModifiedDataType;
+    inWork: ModifiedDataType;
+  } | null;
+};
+
+export type ModifiedDataType = {
+  firstInstance: InstanceType;
+  appealInstance: InstanceType;
+  cassInstance: InstanceType;
+  cass2Instance: InstanceType;
+  allInstances: InstanceType;
+};
+
+export type InstanceType = {
+  typeResponsibles: Responsible[] | null;
+  objectionResponsibles: Responsible[] | null;
+  approveResponsibles: Responsible[] | null;
+  allTypeResponsibles: Responsible[] | null;
 };
 
 export type Responsible = {
-  percent: number;
   name: string;
-  assigned: number;
-  completed: number;
-};
-
-export type AggregateConfig = {
-  instanceKey: string;
-  nameField: string;
-  dateField: string;
-};
-
-export type UploadExcelApiProps = {
-  file: File;
-  dateRange: DateRange;
+  percent?: number;
+  assigned?: number;
+  completed?: number;
+  inWork?: number;
 };
 
 export type DateRange = {

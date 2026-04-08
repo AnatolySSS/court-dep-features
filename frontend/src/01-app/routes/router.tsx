@@ -17,11 +17,11 @@ export const router = createBrowserRouter([
         element: <PercentagePage />,
       },
       {
-        path: "/done-by-period",
+        path: "/doneByPeriod",
         element: <DoneByPeriodPage />,
       },
       {
-        path: "/in-work",
+        path: "/inWork",
         element: <InWorkPage />,
       },
       {

@@ -4,7 +4,7 @@ import { InstanceTabs } from "@/03-widgets";
 import styles from "./percentage-page.module.css";
 
 export function PercentagePage() {
-  const instances = useSelector((state: RootState) => state.upload.modifiedData);
+  const instances = useSelector((state: RootState) => state.upload.modifiedData?.percentage);
 
   return (
     <div className={styles.wrapper}>

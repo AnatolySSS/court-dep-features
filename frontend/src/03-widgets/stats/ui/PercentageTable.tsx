@@ -7,7 +7,7 @@ type Props = {
   data: Responsible[];
 };
 
-export function StatTable({ data }: Props) {
+export function PercentageTable({ data }: Props) {
   return (
     <DataTable value={data} sortField="assigned" sortOrder={-1} removableSort scrollable scrollHeight="51vh">
       <Column field="name" header="ФИО" sortable />
@@ -18,12 +18,12 @@ export function StatTable({ data }: Props) {
         header="%"
         sortable
         body={({ assigned, completed }: Responsible) =>
-          assigned ? Math.round((completed / assigned) * 100) + "%" : "-"
+          assigned ? Math.round((completed! / assigned) * 100) + "%" : "-"
         }
       />
       <Column
         header="Прогресс"
-        body={({ assigned, completed }: Responsible) => <ProgressCell assigned={assigned} completed={completed} />}
+        body={({ assigned, completed }: Responsible) => <ProgressCell assigned={assigned!} completed={completed!} />}
       />
     </DataTable>
   );
