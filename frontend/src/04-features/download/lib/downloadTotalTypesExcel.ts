@@ -1,10 +1,19 @@
 import * as XLSX from "xlsx";
 import { buildSheetData } from "./buildSheetData";
 import type { DateRange } from "@/04-features";
-import { store } from "@/01-app";
+import type { ModifiedDataType } from "@/04-features/upload/model/types";
 
-export function downloadTotalTypesExcel(totalTypes: any) {
+export function downloadTotalTypesExcel(
+  modifiedData: ModifiedDataType | null,
+  currentPage: string,
+  dateRange: DateRange | null,
+) {
   const workbook = XLSX.utils.book_new();
+
+  const statTypes: Record<string, string> = {
+    doneByPeriod: "assigned",
+    inWork: "inWork",
+  };
 
   const sheets = [
     {
@@ -25,18 +34,11 @@ export function downloadTotalTypesExcel(totalTypes: any) {
     },
   ] as const;
 
-  const state = store.getState();
-  const dateArr = state.upload.dateRange;
-  const dateRange: DateRange = {
-    startDate: dateArr ? dateArr[0] : null,
-    endDate: dateArr ? dateArr[1] : null,
-  };
-
   const start = dateRange?.startDate ? dateRange.startDate.toLocaleDateString("ru-RU") : "";
   const end = dateRange?.endDate ? dateRange.endDate.toLocaleDateString("ru-RU") : "";
 
   for (const sheet of sheets) {
-    const data = buildSheetData(totalTypes, sheet.field);
+    const data = buildSheetData(modifiedData, sheet.field, statTypes[currentPage]);
 
     // создаем пустой лист
     const worksheet = XLSX.utils.aoa_to_sheet([]);
@@ -70,7 +72,7 @@ export function downloadTotalTypesExcel(totalTypes: any) {
 
   XLSX.writeFile(
     workbook,
-    `Отчет ${new Date().toLocaleDateString("ru-RU", {
+    `Отчет ${currentPage} ${new Date().toLocaleDateString("ru-RU", {
       year: "numeric",
       month: "2-digit",
       day: "2-digit",

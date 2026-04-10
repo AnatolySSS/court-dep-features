@@ -40,8 +40,6 @@ export function UploadPage() {
         endDate: dateArr ? dateArr[1] : null,
       };
 
-      console.log(dateRange);
-
       const result = await upload({ file, dateRange }).unwrap();
       dispatch(setModifiedData(result.finalData));
 

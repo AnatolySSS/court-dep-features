@@ -1,12 +1,12 @@
 import { Calendar } from "primereact/calendar";
 import type { Nullable } from "primereact/ts-helpers";
 import { selectUploadDateRange, setDateRange } from "@/04-features";
-import { useDispatch, useSelector } from "react-redux";
 import { Button } from "primereact/button";
+import { useAppDispatch, useAppSelector } from "@/01-app/store/hooks";
 
 export const CalendarComponent = () => {
-  const dispatch = useDispatch();
-  const dateRange = useSelector(selectUploadDateRange);
+  const dispatch = useAppDispatch();
+  const dateRange = useAppSelector(selectUploadDateRange);
 
   const onChange = (e: { value: Nullable<(Date | null)[]> }) => {
     const [startDate, endDate] = e.value ?? [];
