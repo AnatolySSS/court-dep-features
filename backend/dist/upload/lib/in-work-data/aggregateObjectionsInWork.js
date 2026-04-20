@@ -12,7 +12,7 @@ function aggregateObjectionsInWork(data, { instanceKey, nameField, dateAssigned,
         }
         if (item[instanceKey]?.[dateAssigned] &&
             !item[instanceKey]?.[dateCompleted] &&
-            (item[instanceKey]?.[isReady]?.includes('отзыв готов') ||
+            (item[instanceKey]?.[isReady]?.toLowerCase() === 'отзыв готов' ||
                 !item[instanceKey]?.[isReady])) {
             acc[name].inWork += 1;
         }

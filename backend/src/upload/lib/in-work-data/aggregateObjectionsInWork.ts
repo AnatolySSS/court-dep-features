@@ -40,7 +40,7 @@ export function aggregateObjectionsInWork(
       if (
         item[instanceKey]?.[dateAssigned] && // Проверяем, что дата назначения есть
         !item[instanceKey]?.[dateCompleted] && // Проверяем, что даты направления отзыва нет
-        (item[instanceKey]?.[isReady]?.includes('отзыв готов') ||
+        (item[instanceKey]?.[isReady]?.toLowerCase() === 'отзыв готов' ||
           !item[instanceKey]?.[isReady]) // Проверяем, что отзыв готов или поле пустое
       ) {
         acc[name].inWork += 1;
