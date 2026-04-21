@@ -28,7 +28,7 @@ export function aggregateDoneByPeriod(
 
   return Object.values(
     data.reduce((acc: Record<string, Responsible>, item) => {
-      const rawName = item[instanceKey]?.[nameField];
+      const rawName: string = item[instanceKey]?.[nameField];
       const name = rawName?.replace(/\b\d{2}\.+\d{2}\.*(\d{4})*\b/, '').trim();
 
       if (!name) return acc;
@@ -38,6 +38,12 @@ export function aggregateDoneByPeriod(
 
       const inRange = parsedDate && isInRange(parsedDate, startDate, endDate);
 
+      if (
+        name.toLowerCase().includes('чаусова') &&
+        Number(item['Общая информация']?.['Общий номер']) > 21490
+      ) {
+        console.log(name);
+      }
       // 🔥 ФИЛЬТРАЦИЯ ПО ДАТЕ
       if (startDate && endDate && !inRange) {
         return acc;

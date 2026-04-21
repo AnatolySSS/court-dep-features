@@ -6,6 +6,7 @@ import { addAllTypes } from './lib/addAllTypes';
 import { trimSheet } from './lib/trimSheet';
 import { getDoneByPeriodData } from './lib/done-by-period-data/getDoneByPeriodData';
 import { getInWorkData } from './lib/in-work-data/getInWorkData';
+import { formatToMDYIfDate } from './lib/formatToMDY';
 
 @Injectable()
 export class CourtCasesService {
@@ -28,11 +29,18 @@ export class CourtCasesService {
 
     const rows = XLSX.utils.sheet_to_json(sheet, {
       header: 1,
-      raw: false,
+      raw: true,
       defval: null,
     });
 
-    const data = mapRows(rows);
+    //Преобразует все даты к формату 4/14/26 (д/м/гг)
+    const normalized = rows.map((row: any) =>
+      row.map((cell: any, i: number) =>
+        i !== 0 ? formatToMDYIfDate(cell) : cell,
+      ),
+    );
+
+    const data = mapRows(normalized);
     const percentageData = getPercentageData(data, dateRange);
     const doneByPeriodData = getDoneByPeriodData(data, dateRange);
     const inWorkData = getInWorkData(data);

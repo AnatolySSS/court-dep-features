@@ -15,6 +15,7 @@ const addAllTypes_1 = require("./lib/addAllTypes");
 const trimSheet_1 = require("./lib/trimSheet");
 const getDoneByPeriodData_1 = require("./lib/done-by-period-data/getDoneByPeriodData");
 const getInWorkData_1 = require("./lib/in-work-data/getInWorkData");
+const formatToMDY_1 = require("./lib/formatToMDY");
 let CourtCasesService = class CourtCasesService {
     async processExcel(file, dateRange) {
         if (!file) {
@@ -28,10 +29,11 @@ let CourtCasesService = class CourtCasesService {
         (0, trimSheet_1.trimSheet)(sheet);
         const rows = XLSX.utils.sheet_to_json(sheet, {
             header: 1,
-            raw: false,
+            raw: true,
             defval: null,
         });
-        const data = (0, mapRows_1.mapRows)(rows);
+        const normalized = rows.map((row) => row.map((cell, i) => i !== 0 ? (0, formatToMDY_1.formatToMDYIfDate)(cell) : cell));
+        const data = (0, mapRows_1.mapRows)(normalized);
         const percentageData = (0, getPercentageData_1.getPercentageData)(data, dateRange);
         const doneByPeriodData = (0, getDoneByPeriodData_1.getDoneByPeriodData)(data, dateRange);
         const inWorkData = (0, getInWorkData_1.getInWorkData)(data);

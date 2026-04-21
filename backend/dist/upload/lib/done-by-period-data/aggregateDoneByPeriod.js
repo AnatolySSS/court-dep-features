@@ -13,6 +13,10 @@ function aggregateDoneByPeriod(data, { instanceKey, nameField, dateField, dateRa
         const rawDate = item[instanceKey]?.[dateField]?.trim();
         const parsedDate = rawDate ? (0, parseMDY_1.parseMDY)(rawDate) : null;
         const inRange = parsedDate && (0, inRange_1.isInRange)(parsedDate, startDate, endDate);
+        if (name.toLowerCase().includes('чаусова') &&
+            Number(item['Общая информация']?.['Общий номер']) > 21490) {
+            console.log(name);
+        }
         if (startDate && endDate && !inRange) {
             return acc;
         }
